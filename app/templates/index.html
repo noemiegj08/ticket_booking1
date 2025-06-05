@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Booking - Accueil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Ticket Booking</h1>
+    <nav>
+        <a href="/login">Connexion</a>
+        <a href="/register">Inscription</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Liste des événements disponibles</h2>
+    <div class="events-list">
+        {% for event in events %}
+            <div class="event-card">
+                <h3>{{ event.titre }}</h3>
+                <p>Date : {{ event.date }}</p>
+                <p>Prix : {{ event.prix }}$</p>
+                <a href="/reserver/{{ event.id }}" class="btn">Réserver</a>
+            </div>
+        {% else %}
+            <p>Aucun événement disponible.</p>
+        {% endfor %}
+    </div>
+</main>
+
+</body>
+</html>
+
