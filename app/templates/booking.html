@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Réservation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <h1>Réservation pour : {{ evenement.titre }}</h1>
-    <p>Date : {{ evenement.date.strftime('%Y-%m-%d') }}</p>
+<body class="reservation-body">
+    <div class="reservation-container">
+        <h1>Réservation pour : {{ evenement.titre }}</h1>
+        <p class="date">Date : {{ evenement.date }}</p>
+        
+        {% if erreur %}
+            <p class="error">{{ erreur }}</p>
+        {% endif %}
 
-    {% if erreur %}
-        <p style="color:red;">{{ erreur }}</p>
-    {% endif %}
+        <form method="POST">
+            <label for="numero_carte">Numéro de carte :</label>
+            <input type="text" name="numero_carte" id="numero_carte" required>
 
-    <form method="post">
-        <label for="numero_carte">Numéro de carte :</label>
-        <input type="text" name="numero_carte" id="numero_carte" required><br>
+            <label for="expiration">Date d'expiration :</label>
+            <input type="text" name="expiration" id="expiration" placeholder="MM/AA" required>
 
-        <label for="expiration">Date d'expiration :</label>
-        <input type="text" name="expiration" id="expiration" placeholder="MM/AA" required><br>
+            <label for="cvv">CVV :</label>
+            <input type="text" name="cvv" id="cvv" required>
 
-        <label for="cvv">CVV :</label>
-        <input type="text" name="cvv" id="cvv" required><br>
+            <button type="submit" class="btn">Confirmer la réservation</button>
+        </form>
 
-        <button type="submit">Confirmer la réservation</button>
-    </form>
+        <a href="/" class="back-to-home btn-secondary">Retour à l'accueil</a>
+    </div>
 </body>
 </html>

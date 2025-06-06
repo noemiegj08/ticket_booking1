@@ -1,9 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"><title>Non autorisé</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Accès refusé</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @keyframes clignote {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        body {
+            background-color: #0c0c0c;
+            color: #ff4444;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .box {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            max-width: 500px;
+        }
+
+        img {
+            width: 80px;
+            margin-bottom: 20px;
+            animation: clignote 1.5s infinite;
+        }
+
+        h1 {
+            color: #ff5555;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #e0e0e0;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #b71c1c;
+            color: white;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #f44336;
+        }
+    </style>
+</head>
 <body>
-    <h1>Accès refusé</h1>
-    <p>Vous devez être connecté pour accéder à cette page.</p>
-    <a href="/login">Connexion</a> ou <a href="/register">Inscription</a>
+    <div class="box">
+        <img src="{{ url_for('static', filename='images/access_denied.png') }}" alt="Accès refusé">
+        <h1>Accès refusé</h1>
+        <p>Vous devez être connecté pour accéder à cette page.</p>
+        <a href="/login" class="btn">Connexion</a>
+        <a href="/register" class="btn">Inscription</a>
+        <a href="/" class="btn">Accueil</a>
+    </div>
 </body>
 </html>
+

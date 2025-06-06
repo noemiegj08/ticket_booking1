@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Inscription</h1>
+    <div class="form-container">
+        <h2>Inscription</h2>
+        <form method="POST">
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" id="nom" required>
 
-    {% if message %}
-        <p style="color: green;">{{ message }}</p>
-    {% endif %}
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" required>
 
-    <form method="POST">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br><br>
+            <label for="password">Mot de passe :</label>
+            <input type="password" name="password" id="password" required>
 
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <button type="submit">S'inscrire</button>
-    </form>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <a href="/" class="back-to-home btn-secondary">Retour à l'accueil</a>
+    </div>
 </body>
 </html>

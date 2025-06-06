@@ -3,23 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #d6e4f0, #fbe4f0);
+            color: #333;
+            padding: 40px;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #6847a3;
+            font-size: 28px;
+        }
+
+        .email {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .reservation-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .reservation-list li {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .dashboard-links {
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: #7dd5f3;
+            color: white;
+            padding: 10px 18px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #60c3e4;
+        }
+
+        .btn-secondary {
+            background-color: #d45db3;
+        }
+
+        .btn-secondary:hover {
+            background-color: #be4ea1;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenue, {{ utilisateur.nom }}</h1>
-    <p>Votre courriel : {{ utilisateur.email }}</p>
+    <div class="dashboard-container">
+        <h1>Bienvenue, {{ utilisateur.nom }}</h1>
+        <p class="email">Votre courriel : <strong>{{ utilisateur.email }}</strong></p>
 
-    <h2>Événements réservés</h2>
-    {% if evenements %}
-        <ul>
-        {% for e in evenements %}
-            <li><strong>{{ e.titre }}</strong> le {{ e.date.strftime('%Y-%m-%d') }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun événement réservé.</p>
-    {% endif %}
+        <h2>Événements réservés</h2>
+        {% if evenements %}
+            <ul class="reservation-list">
+                {% for reservation in evenements %}
+                    <li><strong>{{ reservation.titre }}</strong> le {{ reservation.date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun événement réservé.</p>
+        {% endif %}
 
-    <p><a href="/">Accueil</a> | <a href="/logout">Déconnexion</a></p>
+        <div class="dashboard-links">
+            <a href="/" class="btn">Retour à l'accueil</a>
+            <a href="/logout" class="btn btn-secondary">Déconnexion</a>
+        </div>
+    </div>
 </body>
 </html>
 

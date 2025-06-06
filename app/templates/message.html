@@ -1,8 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"><title>Message</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Réservation confirmée</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #a1d8f1, #9bd0dd, #c1e4e6);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .confirmation-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px 60px;
+            border-radius: 16px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            animation: shimmer 4s infinite ease-in-out;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #005f73;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #00b4d8;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #0096c7;
+        }
+
+        @keyframes shimmer {
+            0% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(0, 191, 255, 0.7); }
+            100% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.4); }
+        }
+    </style>
+</head>
 <body>
-    <h2>{{ message }}</h2>
-    <a href="/">Retour à l'accueil</a>
+    <div class="confirmation-box">
+        <h1>✨ Réservation confirmée pour l’événement ✨</h1>
+        <a href="/" class="btn">Retour à l'accueil</a>
+    </div>
 </body>
 </html>
