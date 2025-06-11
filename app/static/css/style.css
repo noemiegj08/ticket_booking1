@@ -467,3 +467,78 @@ form button:hover {
 .dashboard-links .btn-secondary:hover {
     background-color: #ff90ac;
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #d8b4f8, #fbcfe8, #fde68a);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fbcfe8, 0 0 30px #d8b4f8;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #f472b6, #d8b4f8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #fbcfe8;
+    color: #6b21a8;
+    font-weight: bold;
+}
+
+td {
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f3e8ff;
+}

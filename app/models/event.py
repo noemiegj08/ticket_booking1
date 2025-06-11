@@ -2,7 +2,7 @@ from app import db
 
 
 class event1(db.Model):
-    __tablename__ = "event1"  # ← attention à bien l’aligner avec le reste
+    __tablename__ = "event1"  
 
     id = db.Column(db.Integer, primary_key=True)
     titre = db.Column(db.String(200), nullable=False)
