@@ -1,15 +1,22 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, current_app
 from app import db
 from app.models.booking import booking1
 from app.models.event import event1
 from app.models.user import user1
+import jwt
 
 booking_bp = Blueprint("booking", __name__)
 
 @booking_bp.route("/reserver/<int:event_id>", methods=["GET", "POST"])
 def reserver(event_id):
-    # Vérifie si l'utilisateur est connecté
-    if "user_email" not in session or "user_nom" not in session:
+    # Vérifie si l'utilisateur est connecté via JWT
+    token = request.cookies.get("jwt")
+    if not token:
+        return render_template("unauthorized.html")
+
+    try:
+        data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+    except:
         return render_template("unauthorized.html")
 
     # Récupère l'événement demandé
@@ -29,12 +36,8 @@ def reserver(event_id):
         if not (numero and expiration and cvv):
             return render_template("booking.html", evenement=evenement, erreur="Tous les champs sont requis")
 
-        # DEBUG : Affiche l'email utilisé pour retrouver l'utilisateur
-        print("Email utilisé pour trouver l'utilisateur :", session.get("user_email"))
-
-        utilisateur = user1.query.filter_by(email=session["user_email"]).first()
+        utilisateur = user1.query.filter_by(email=data["email"]).first()
         if not utilisateur:
-            print("⚠️ Aucun utilisateur trouvé avec cet email.")
             return render_template("message.html", message="Utilisateur introuvable."), 404
 
         # Crée la réservation liée à l'utilisateur connecté
